@@ -1,0 +1,24 @@
+# Docker Compose file for ELK stack
+
+# Build with:
+# docker-compose build elk
+
+# Run with:
+# docker-compose up
+version: '3'
+
+volumes:
+  elk-data:
+
+services:
+  elk:
+    build: .
+    image: secureauth/elk:latest
+    restart: always
+    volumes:
+      - elk-data:/var/lib/elasticsearch
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+      - "1514:1514/udp"
